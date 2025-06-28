@@ -9,11 +9,11 @@ export SERVER_PORT=8080
 export JAVA_OPTS="-Xms512m -Xmx1024m"
 
 # 이전 프로세스 종료 (혹시 모를 중복 실행 방지)
-# if [ -f /home/ec2-user/app/pid.file ]; then
-#     pid=$(cat /home/ec2-user/app/pid.file)
-#     kill -9 $pid || true
-#     rm /home/ec2-user/app/pid.file
-# fi
+if [ -f /home/ec2-user/app/pid.file ]; then
+    pid=$(cat /home/ec2-user/app/pid.file)
+    kill -9 $pid || true
+    rm /home/ec2-user/app/pid.file
+fi
 
 # 프로세스 종료
 CURRENT_PID=$(ps -ef | grep '[j]ava -jar springboot' | awk '{print $2}')
